@@ -1,16 +1,16 @@
 package cr.ac.tec.MonsTEC2;
 
-public class Carta {
+public class Cartas {
 
     private String name;
     private String type;
     private int cost;
     private int dmg;
 
-    public Carta() {
+    public Cartas() {
     }
 
-    public Carta(String name, String type, int cost, int dmg) {
+    public Cartas(String name, String type, int cost, int dmg) {
         this.name = name;
         this.type = type;
         this.cost = cost;

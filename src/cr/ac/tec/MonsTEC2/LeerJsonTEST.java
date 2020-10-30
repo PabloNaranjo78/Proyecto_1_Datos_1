@@ -30,7 +30,7 @@ public class LeerJsonTEST {
 //            System.out.println(json);
 
             Gson gson = new Gson();
-            Carta c = gson.fromJson(json, Carta.class);
+            Cartas c = gson.fromJson(json, Cartas.class);
             c.setDmg(10);
             System.out.println(c);
         }
