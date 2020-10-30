@@ -1,6 +1,9 @@
 package cr.ac.tec.MonsTEC.MainWindow;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.Group;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -12,18 +15,36 @@ import javafx.stage.Stage;
 public class MenuWindow extends Pane {
     Stage primaryStage;
 
-    public MenuWindow(Stage scene){
-        this.primaryStage = scene;
+    public MenuWindow(Stage window){
+        this.primaryStage = window;
 
-
-
-
-        btnStartGame.setLayoutX(170);
+        btnStartGame.setLayoutX(210);
         btnStartGame.setLayoutY(380);
+        btnStartGame.setPrefSize(200,75);
 
-        btnJoinGame.setLayoutX(510);
+        btnJoinGame.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                Pane joinGame = new JoinGame(primaryStage);
+                joinGame.setStyle("-fx-background-image: url(/cr/ac/tec/MonsTEC/Resources/JoinGameBackground.png)");
+                Scene joinGameScene = new Scene(joinGame,1000,600);
+                primaryStage.setScene(joinGameScene);
+            }
+        });
+
+        btnJoinGame.setLayoutX(590);
         btnJoinGame.setLayoutY(380);
-        btnJoinGame.setStyle("-fx-background-color: rgba(243,236,250,0.63)");
+        btnJoinGame.setPrefSize(200,75);
+
+        btnStartGame.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                Pane createGame = new CreateGame(primaryStage);
+                createGame.setStyle("-fx-background-image: url(/cr/ac/tec/MonsTEC/Resources/CreateGameBackground.png)");
+                Scene createGameScene = new Scene(createGame,1000,600);
+                primaryStage.setScene(createGameScene);
+            }
+        });
 
         getChildren().addAll(btnJoinGame,btnStartGame);
 
