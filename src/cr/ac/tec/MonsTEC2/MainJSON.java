@@ -7,7 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class LeerJsonTEST {
+public class MainJSON {
 
     public static void main(String[] args) {
 
@@ -31,9 +31,15 @@ public class LeerJsonTEST {
 
             Gson gson = new Gson();
             Cartas c = gson.fromJson(json, Cartas.class);
-            c.setDmg(10);
-            System.out.println(c);
-        }
+//            System.out.println(c);
+            TypeEsbirros[] esb = c.getEsbirro();
+            TypeSecretos[] secrt = c.getSecreto();
+            TypeHechizos[] hchiz = c.getHechizo();
 
+//            Test
+            System.out.println(esb[10].getID());
+            System.out.println(secrt[10].getID());
+            System.out.println(hchiz[10].getID());
+        }
     }
 }

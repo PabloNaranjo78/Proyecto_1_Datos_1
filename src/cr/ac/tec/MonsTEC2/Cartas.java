@@ -1,61 +1,52 @@
 package cr.ac.tec.MonsTEC2;
 
+import java.util.Arrays;
+
 public class Cartas {
 
-    private String name;
-    private String type;
-    private int cost;
-    private int dmg;
+    private TypeEsbirros[] Esbirro;
+    private TypeSecretos[] Secreto;
+    private TypeHechizos[] Hechizo;
 
     public Cartas() {
     }
 
-    public Cartas(String name, String type, int cost, int dmg) {
-        this.name = name;
-        this.type = type;
-        this.cost = cost;
-        this.dmg = dmg;
+    public Cartas(TypeEsbirros[] esbirro, TypeSecretos[] secreto, TypeHechizos[] hechizo) {
+        Esbirro = esbirro;
+        Secreto = secreto;
+        Hechizo = hechizo;
     }
 
-    public String getName() {
-        return name;
+    public TypeEsbirros[] getEsbirro() {
+        return Esbirro;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setEsbirro(TypeEsbirros[] esbirro) {
+        Esbirro = esbirro;
     }
 
-    public String getType() {
-        return type;
+    public TypeSecretos[] getSecreto() {
+        return Secreto;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setSecreto(TypeSecretos[] secreto) {
+        Secreto = secreto;
     }
 
-    public int getCost() {
-        return cost;
+    public TypeHechizos[] getHechizo() {
+        return Hechizo;
     }
 
-    public void setCost(int cost) {
-        this.cost = cost;
-    }
-
-    public int getDmg() {
-        return dmg;
-    }
-
-    public void setDmg(int dmg) {
-        this.dmg = dmg;
+    public void setHechizo(TypeHechizos[] hechizo) {
+        Hechizo = hechizo;
     }
 
     @Override
     public String toString() {
-        return "Carta{" +
-                "name='" + name + '\'' +
-                ", type='" + type + '\'' +
-                ", cost=" + cost +
-                ", dmg=" + dmg +
+        return "Cartas{" +
+                "Esbirro=" + Arrays.toString(Esbirro) +
+                ", Secreto=" + Arrays.toString(Secreto) +
+                ", Hechizo=" + Arrays.toString(Hechizo) +
                 '}';
     }
 
