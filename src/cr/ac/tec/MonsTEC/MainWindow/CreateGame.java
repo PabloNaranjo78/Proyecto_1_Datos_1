@@ -1,11 +1,11 @@
 package cr.ac.tec.MonsTEC.MainWindow;
 
+import cr.ac.tec.MonsTEC.ServerSockets.Server;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class CreateGame extends Pane {
@@ -36,7 +36,15 @@ public class CreateGame extends Pane {
             }
         });
 
+        startServer(port,lblIp.getText());
+
         getChildren().addAll(btnBack,lblPort,lblIp);
+    }
+
+    private void startServer(int port, String ip) {
+        Server server = new Server(port,ip);
+        Thread serverThread = new Thread(server);
+        serverThread.start();
     }
 
     Label lblPort = new Label(port+"");

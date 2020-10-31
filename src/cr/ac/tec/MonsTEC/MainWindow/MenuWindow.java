@@ -25,6 +25,7 @@ public class MenuWindow extends Pane {
         btnJoinGame.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+                System.out.println("Uniéndolse a juego");
                 Pane joinGame = new JoinGame(primaryStage);
                 joinGame.setStyle("-fx-background-image: url(/cr/ac/tec/MonsTEC/Resources/JoinGameBackground.png)");
                 Scene joinGameScene = new Scene(joinGame,1000,600);
@@ -39,6 +40,7 @@ public class MenuWindow extends Pane {
         btnStartGame.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
+                System.out.println("Pantalla creando juego");
                 Pane createGame = new CreateGame(primaryStage);
                 createGame.setStyle("-fx-background-image: url(/cr/ac/tec/MonsTEC/Resources/CreateGameBackground.png)");
                 Scene createGameScene = new Scene(createGame,1000,600);
