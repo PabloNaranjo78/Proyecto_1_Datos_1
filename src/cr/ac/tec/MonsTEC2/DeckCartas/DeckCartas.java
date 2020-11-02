@@ -58,7 +58,7 @@ public class DeckCartas {
         for (int i = 0 ; i < 4 ; i++) {
             deck.add(esb[i]);
         }
-        System.out.println(deck.peek());
+        System.out.println("yep");
     }
     }
 
