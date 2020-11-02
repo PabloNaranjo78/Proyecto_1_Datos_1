@@ -1,4 +1,8 @@
-package cr.ac.tec.MonsTEC2;
+package cr.ac.tec.MonsTEC2.DeckCartas;
+
+import cr.ac.tec.MonsTEC2.DeckCartas.CardTypes.TypeEsbirros;
+import cr.ac.tec.MonsTEC2.DeckCartas.CardTypes.TypeHechizos;
+import cr.ac.tec.MonsTEC2.DeckCartas.CardTypes.TypeSecretos;
 
 import java.util.Arrays;
 

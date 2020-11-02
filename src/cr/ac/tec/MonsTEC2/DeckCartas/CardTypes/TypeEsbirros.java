@@ -1,4 +1,4 @@
-package cr.ac.tec.MonsTEC2;
+package cr.ac.tec.MonsTEC2.DeckCartas.CardTypes;
 
 public class TypeEsbirros {
 
