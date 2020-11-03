@@ -1,18 +1,5 @@
 package cr.ac.tec.MonsTEC2;
 
-import com.google.gson.Gson;
-import cr.ac.tec.MonsTEC2.DeckCartas.Cartas;
-import cr.ac.tec.MonsTEC2.DeckCartas.CardTypes.TypeEsbirros;
-import cr.ac.tec.MonsTEC2.DeckCartas.CardTypes.TypeHechizos;
-import cr.ac.tec.MonsTEC2.DeckCartas.CardTypes.TypeSecretos;
-import cr.ac.tec.MonsTEC2.DeckCartas.DeckCartas;
-
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.Stack;
-
 public class MainJSON {
 
     public static void main(String[] args) {
