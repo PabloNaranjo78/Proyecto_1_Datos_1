@@ -1,10 +1,11 @@
 {
-  "Esbirro": [
+  "Carta": [
     {
       "ID": 0,
       "name": "Martillero celestial",
       "cost": 455,
-      "dmg_fct": 65
+      "dmg_fct": 65,
+      "type": "Esbirro"
     },
     {
       "ID": 1,
