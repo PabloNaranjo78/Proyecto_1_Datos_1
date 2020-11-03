@@ -8,6 +8,14 @@ public class TypeCarta {
     private int dmg_fct;
     private String type;
 
+    public TypeCarta(int ID, String name, int cost, int dmg_fct, String type) {
+        this.ID = ID;
+        this.name = name;
+        this.cost = cost;
+        this.dmg_fct = dmg_fct;
+        this.type = type;
+    }
+
     public int getID() {
         return ID;
     }

@@ -8,12 +8,16 @@ public class Cartas {
 
     private TypeCarta[] tcarta;
 
+//    Constructors
+
     public Cartas() {
     }
 
     public Cartas(TypeCarta[] tcarta) {
         this.tcarta = tcarta;
     }
+
+//    Get & Set
 
     public TypeCarta[] getTcarta() {
         return tcarta;
@@ -26,7 +30,7 @@ public class Cartas {
     @Override
     public String toString() {
         return "Cartas{" +
-                "Carta=" + Arrays.toString(tcarta) +
+                "tcarta=" + Arrays.toString(tcarta) +
                 '}';
     }
 
