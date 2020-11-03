@@ -1,9 +1,7 @@
 package cr.ac.tec.MonsTEC2.DeckCartas;
 
 import com.google.gson.Gson;
-import cr.ac.tec.MonsTEC2.DeckCartas.CardTypes.TypeEsbirros;
-import cr.ac.tec.MonsTEC2.DeckCartas.CardTypes.TypeHechizos;
-import cr.ac.tec.MonsTEC2.DeckCartas.CardTypes.TypeSecretos;
+import cr.ac.tec.MonsTEC2.DeckCartas.CardTypes.TypeCarta;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -31,9 +29,7 @@ public class FromJSON {
         Gson gson = new Gson();
         Cartas c = gson.fromJson(json, Cartas.class);
 
-        TypeEsbirros[] esb = c.getEsbirro();
-        TypeSecretos[] secrt = c.getSecreto();
-        TypeHechizos[] hchiz = c.getHechizo();
+        TypeCarta[] tc = c.getTcarta();
 
 //        deck = new Stack<>();
         DeckCartas deck1 = new DeckCartas();
@@ -41,7 +37,7 @@ public class FromJSON {
         for (int i = 0 ; i < 4 ; i++) {
 //            deck.add(esb[i]);
 //            deck.add(secrt[i]);
-            deck1.push(515);
+//            deck1.push(515);
         }
         System.out.println("yep");
     }

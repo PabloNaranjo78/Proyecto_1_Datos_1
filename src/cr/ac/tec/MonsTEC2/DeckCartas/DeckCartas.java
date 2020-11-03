@@ -1,17 +1,5 @@
 package cr.ac.tec.MonsTEC2.DeckCartas;
 
-import com.google.gson.Gson;
-import cr.ac.tec.MonsTEC2.DeckCartas.CardTypes.TypeEsbirros;
-import cr.ac.tec.MonsTEC2.DeckCartas.CardTypes.TypeHechizos;
-import cr.ac.tec.MonsTEC2.DeckCartas.CardTypes.TypeSecretos;
-
-import java.awt.*;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.Stack;
-
 public class DeckCartas {
 
     private int maxSize = 17;

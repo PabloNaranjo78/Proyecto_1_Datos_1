@@ -1,56 +1,32 @@
 package cr.ac.tec.MonsTEC2.DeckCartas;
 
-import cr.ac.tec.MonsTEC2.DeckCartas.CardTypes.TypeEsbirros;
-import cr.ac.tec.MonsTEC2.DeckCartas.CardTypes.TypeHechizos;
-import cr.ac.tec.MonsTEC2.DeckCartas.CardTypes.TypeSecretos;
+import cr.ac.tec.MonsTEC2.DeckCartas.CardTypes.TypeCarta;
 
 import java.util.Arrays;
 
 public class Cartas {
 
-    private TypeEsbirros[] Esbirro;
-    private TypeSecretos[] Secreto;
-    private TypeHechizos[] Hechizo;
+    private TypeCarta[] tcarta;
 
     public Cartas() {
     }
 
-    public Cartas(TypeEsbirros[] esbirro, TypeSecretos[] secreto, TypeHechizos[] hechizo) {
-        Esbirro = esbirro;
-        Secreto = secreto;
-        Hechizo = hechizo;
+    public Cartas(TypeCarta[] tcarta) {
+        this.tcarta = tcarta;
     }
 
-    public TypeEsbirros[] getEsbirro() {
-        return Esbirro;
+    public TypeCarta[] getTcarta() {
+        return tcarta;
     }
 
-    public void setEsbirro(TypeEsbirros[] esbirro) {
-        Esbirro = esbirro;
-    }
-
-    public TypeSecretos[] getSecreto() {
-        return Secreto;
-    }
-
-    public void setSecreto(TypeSecretos[] secreto) {
-        Secreto = secreto;
-    }
-
-    public TypeHechizos[] getHechizo() {
-        return Hechizo;
-    }
-
-    public void setHechizo(TypeHechizos[] hechizo) {
-        Hechizo = hechizo;
+    public void setTcarta(TypeCarta[] tcarta) {
+        this.tcarta = tcarta;
     }
 
     @Override
     public String toString() {
         return "Cartas{" +
-                "Esbirro=" + Arrays.toString(Esbirro) +
-                ", Secreto=" + Arrays.toString(Secreto) +
-                ", Hechizo=" + Arrays.toString(Hechizo) +
+                "Carta=" + Arrays.toString(tcarta) +
                 '}';
     }
 

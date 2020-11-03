@@ -1,11 +1,12 @@
 package cr.ac.tec.MonsTEC2.DeckCartas.CardTypes;
 
-public class TypeSecretos {
+public class TypeCarta {
 
     private int ID;
     private String name;
     private int cost;
-    private String dmg_fct;
+    private int dmg_fct;
+    private String type;
 
     public int getID() {
         return ID;
@@ -31,11 +32,19 @@ public class TypeSecretos {
         this.cost = cost;
     }
 
-    public String getDmg_fct() {
+    public int getDmg_fct() {
         return dmg_fct;
     }
 
-    public void setDmg_fct(String dmg_fct) {
+    public void setDmg_fct(int dmg_fct) {
         this.dmg_fct = dmg_fct;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
