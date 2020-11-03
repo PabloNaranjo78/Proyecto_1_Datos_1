@@ -1,6 +1,8 @@
 package cr.ac.tec.MonsTEC.ServerSockets;
 
 import com.google.gson.Gson;
+import cr.ac.tec.MonsTEC.MainWindow.JoinGame;
+import javafx.stage.Stage;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -18,6 +20,7 @@ public class Client implements Runnable {
     String jsonOut;
     String jsonIn;
     Gson gson = new Gson();
+    static boolean isStarted = false;
 
     public Client(int port, String ip){
         this.port = port;
@@ -27,8 +30,10 @@ public class Client implements Runnable {
     @Override
     public void run() {
         try {
+
             System.out.println("iniciando cliente");
             socket = new Socket(ip,port);
+
             System.out.println("Cliente inicializado");
             dataInputStream = new DataInputStream(socket.getInputStream());
             dataOutputStream = new PrintStream(socket.getOutputStream());
@@ -48,4 +53,6 @@ public class Client implements Runnable {
 
 
     }
+
+
 }

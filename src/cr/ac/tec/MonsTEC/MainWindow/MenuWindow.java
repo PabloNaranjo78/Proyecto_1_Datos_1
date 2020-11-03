@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 
 public class MenuWindow extends Pane {
     Stage primaryStage;
+    public Scene createGameScene;
 
     public MenuWindow(Stage window){
         this.primaryStage = window;
@@ -30,6 +31,7 @@ public class MenuWindow extends Pane {
                 joinGame.setStyle("-fx-background-image: url(/cr/ac/tec/MonsTEC/Resources/JoinGameBackground.png)");
                 Scene joinGameScene = new Scene(joinGame,1000,600);
                 primaryStage.setScene(joinGameScene);
+
             }
         });
 
@@ -43,8 +45,9 @@ public class MenuWindow extends Pane {
                 System.out.println("Pantalla creando juego");
                 Pane createGame = new CreateGame(primaryStage);
                 createGame.setStyle("-fx-background-image: url(/cr/ac/tec/MonsTEC/Resources/CreateGameBackground.png)");
-                Scene createGameScene = new Scene(createGame,1000,600);
+                createGameScene = new Scene(createGame,1000,600);
                 primaryStage.setScene(createGameScene);
+
             }
         });
 
