@@ -11,239 +11,287 @@
       "ID": 1,
       "name": "Dragon de hielo",
       "cost": 385,
-      "dmg_fct": 55
+      "dmg_fct": 55,
+      "type": "Esbirro"
     },
     {
       "ID": 2,
       "name": "Arquero infernal",
       "cost": 245,
-      "dmg_fct": 35
+      "dmg_fct": 35,
+      "type": "Esbirro"
     },
     {
       "ID": 3,
       "name": "Espadachin",
       "cost": 210,
-      "dmg_fct": 30
+      "dmg_fct": 30,
+      "type": "Esbirro"
     },
     {
       "ID": 4,
       "name": "Murloc",
       "cost": 105,
-      "dmg_fct": 15
+      "dmg_fct": 15,
+      "type": "Esbirro"
     },
     {
       "ID": 5,
       "name": "Mountruo desconocido",
       "cost": 175,
-      "dmg_fct": 25
+      "dmg_fct": 25,
+      "type": "Esbirro"
     },
     {
       "ID": 6,
       "name": "Acechador voraz",
       "cost": 280,
-      "dmg_fct": 40
+      "dmg_fct": 40,
+      "type": "Esbirro"
     },
     {
       "ID": 7,
       "name": "Cazadora de almas",
       "cost": 350,
-      "dmg_fct": 50
+      "dmg_fct": 50,
+      "type": "Esbirro"
     },
     {
       "ID": 8,
       "name": "Hechizero inescrupuloso",
       "cost": 315,
-      "dmg_fct": 45
+      "dmg_fct": 45,
+      "type": "Esbirro"
     },
     {
       "ID": 9,
       "name": "Anticipador de desgracia",
       "cost": 175,
-      "dmg_fct": 25
+      "dmg_fct": 25,
+      "type": "Esbirro"
     },
     {
       "ID": 10,
       "name": "Neofita espectral",
       "cost": 140,
-      "dmg_fct": 20
+      "dmg_fct": 20,
+      "type": "Esbirro"
     },
     {
       "ID": 11,
       "name": "Jinete profetico",
       "cost": 280,
-      "dmg_fct": 40
+      "dmg_fct": 40,
+      "type": "Esbirro"
     },
     {
       "ID": 12,
       "name": "Cria de bestia",
       "cost": 70,
-      "dmg_fct": 10
+      "dmg_fct": 10,
+      "type": "Esbirro"
     },
     {
       "ID": 13,
       "name": "Mago ignoto",
       "cost": 210,
       "dmg_fct": 30
-    }
-  ],
-  "Secreto": [
+    },
     {
-      "ID": 0,
+      "ID": 14,
       "name": "Invocacion gemela",
       "cost": 300,
-      "dmg_fct": null
+      "dmg_fct": null,
+      "type": "Secreto"
     },
     {
-      "ID": 1,
+      "ID": 15,
       "name": "Golpe de suerte",
       "cost": 250,
-      "dmg_fct": null
+      "dmg_fct": null,
+      "type": "Secreto"
     },
     {
-      "ID": 2,
+      "ID": 16,
       "name": "Danza del mal",
       "cost": 275,
-      "dmg_fct": null
+      "dmg_fct": null,
+      "type": "Secreto"
     },
     {
-      "ID": 3,
+      "ID": 17,
       "name": "Destruccion imprevisible",
       "cost": 500,
-      "dmg_fct": null
+      "dmg_fct": null,
+      "type": "Secreto"
     },
     {
-      "ID": 4,
+      "ID": 18,
       "name": "Corrupcion",
       "cost": 450,
-      "dmg_fct": null
+      "dmg_fct": null,
+      "type": "Secreto"
     },
     {
-      "ID": 5,
+      "ID": 19,
       "name": "Triqueta",
       "cost": 500,
-      "dmg_fct": null
+      "dmg_fct": null,
+      "type": "Secreto"
     },
     {
-      "ID": 6,
+      "ID": 20,
+      "name": "Martillero celestial",
+      "cost": 455,
+      "dmg_fct": 65,
+      "type": "Secreto"
+    },
+    {
+      "ID": 21,
       "name": "Cataclismo",
       "cost": 400,
-      "dmg_fct": null
+      "dmg_fct": null,
+      "type": "Secreto"
     },
     {
-      "ID": 7,
+      "ID": 22,
       "name": "Ruleta rusa",
       "cost": 320,
-      "dmg_fct": null
+      "dmg_fct": null,
+      "type": "Secreto"
     },
     {
-      "ID": 8,
+      "ID": 23,
       "name": "Sacrificio",
       "cost": 350,
-      "dmg_fct": null
+      "dmg_fct": null,
+      "type": "Secreto"
     },
     {
-      "ID": 9,
+      "ID": 24,
       "name": "Puñal de bolsillo",
       "cost": 300,
-      "dmg_fct": null
+      "dmg_fct": null,
+      "type": "Secreto"
     },
     {
-      "ID": 10,
+      "ID": 25,
       "name": "Martillo de plata de Maxwell",
       "cost": 320,
-      "dmg_fct": null
+      "dmg_fct": null,
+      "type": "Secreto"
     },
     {
-      "ID": 11,
+      "ID": 26,
       "name": "Campana de la division",
       "cost": 600,
-      "dmg_fct": null
+      "dmg_fct": null,
+      "type": "Secreto"
     },
     {
-      "ID": 12,
+      "ID": 27,
       "name": "Escalera al cielo",
       "cost": 700,
-      "dmg_fct": null
-    }
-  ],
-  "Hechizo": [
+      "dmg_fct": null,
+      "type": "Secreto"
+    },
     {
-      "ID": 0,
+      "ID": 28,
       "name": "Daño instantaneo",
       "cost": 150,
-      "dmg_fct": null
+      "dmg_fct": null,
+      "type": "Hechizo"
     },
     {
-      "ID": 1,
+      "ID": 29,
       "name": "Congelar",
       "cost": 300,
-      "dmg_fct": null
+      "dmg_fct": null,
+      "type": "Hechizo"
     },
     {
-      "ID": 2,
+      "ID": 30,
       "name": "Curar",
       "cost": 400,
-      "dmg_fct": null
+      "dmg_fct": null,
+      "type": "Hechizo"
     },
     {
-      "ID": 3,
+      "ID": 31,
       "name": "Poder supremo",
       "cost": 600,
-      "dmg_fct": null
+      "dmg_fct": null,
+      "type": "Hechizo"
     },
     {
-      "ID": 4,
+      "ID": 32,
       "name": "Robar carta",
       "cost": 200,
-      "dmg_fct": null
+      "dmg_fct": null,
+      "type": "Hechizo"
     },
     {
-      "ID": 5,
+      "ID": 33,
       "name": "Quemar",
       "cost": 200,
-      "dmg_fct": null
+      "dmg_fct": null,
+      "type": "Hechizo"
     },
     {
-      "ID": 6,
+      "ID": 34,
       "name": "Electrificar",
       "cost": 100,
-      "dmg_fct": null
+      "dmg_fct": null,
+      "type": "Hechizo"
     },
     {
-      "ID": 7,
+      "ID": 35,
       "name": "Veneno",
       "cost": 300,
-      "dmg_fct": null
+      "dmg_fct": null,
+      "type": "Hechizo"
     },
     {
-      "ID": 8,
+      "ID": 36,
       "name": "Fuego salvaje",
       "cost": 400,
-      "dmg_fct": null
+      "dmg_fct": null,
+      "type": "Hechizo"
     },
     {
-      "ID": 9,
+      "ID": 37,
       "name": "Doble hoja",
       "cost": 270,
-      "dmg_fct": null
+      "dmg_fct": null,
+      "type": "Hechizo"
     },
     {
-      "ID": 10,
+      "ID": 38,
       "name": "Robo de mana",
       "cost": 250,
-      "dmg_fct": null
+      "dmg_fct": null,
+      "type": "Hechizo"
     },
     {
-      "ID": 11,
+      "ID": 39,
       "name": "Multiplicacion de daño",
       "cost": 300,
-      "dmg_fct": null
+      "dmg_fct": null,
+      "type": "Hechizo"
     },
     {
-      "ID": 12,
+      "ID": 38,
+      "name": "Martillero celestial",
+      "cost": 455,
+      "dmg_fct": 65,
+      "type": "Esbirro"
+    },
+    {
+      "ID": 39,
       "name": "Maldicion oscura",
       "cost": 350,
-      "dmg_fct": null
+      "dmg_fct": null,
+      "type": "Hechizo"
     }
   ]
 }
