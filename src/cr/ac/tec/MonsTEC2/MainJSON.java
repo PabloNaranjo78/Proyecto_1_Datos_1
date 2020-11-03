@@ -57,8 +57,13 @@ public class MainJSON {
 //        }
 
 
-        DeckCartas deck = new DeckCartas();
-        System.out.println(deck);
+//        DeckCartas deck = new DeckCartas();
+//        System.out.println(deck);
+//        deck.push(50);
+//        deck.push(505);
+//        deck.push(5050);
+//        deck.peek();
+//        System.out.println(deck.peek());
 
 //        for (int i = 0 ; i < 4 ; i++) {
 //                DeckCartas.(c.getEsbirro()[i]);
