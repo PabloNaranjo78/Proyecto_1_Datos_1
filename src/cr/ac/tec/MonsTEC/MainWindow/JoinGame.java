@@ -1,20 +1,17 @@
 package cr.ac.tec.MonsTEC.MainWindow;
 
-import cr.ac.tec.MonsTEC.Game.GameWindow;
+import cr.ac.tec.MonsTEC.Game.GameBoard;
 import cr.ac.tec.MonsTEC.ServerSockets.Client;
-import cr.ac.tec.MonsTEC.ServerSockets.Server;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import javax.swing.event.CaretListener;
 
 public class JoinGame extends Pane {
 
@@ -68,8 +65,8 @@ public class JoinGame extends Pane {
     }
 
     public void nexWindow(){
-        GridPane gameWindow = new GameWindow(stage);
-        Scene scene = new Scene(gameWindow,1000,600);
+        BorderPane gameBoard = new GameBoard(stage);
+        Scene scene = new Scene(gameBoard,1000,600);
         stage.setScene(scene);
     }
 }

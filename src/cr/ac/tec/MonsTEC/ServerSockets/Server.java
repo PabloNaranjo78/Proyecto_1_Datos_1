@@ -15,9 +15,8 @@ public class Server extends Observable implements Runnable {
     ServerSocket serverSocket;
     Socket socket;
     DataInputStream dataInputStream;
-    DataOutputStream dataOutputStream;
+    PrintStream dataOutputStream;
     String jsonIn;
-    String jsonOut;
     Gson gson = new Gson();
     boolean isWaiting = true;
     static boolean isStarted = false;
@@ -35,41 +34,30 @@ public class Server extends Observable implements Runnable {
         try {
             serverSocket = new ServerSocket(port);
 
-            while (true){
-                socket = serverSocket.accept();
-                setIsStarted();
-                this.setChanged();
-                this.notifyObservers(isStarted);
-                this.clearChanged();
-                dataInputStream = new DataInputStream(socket.getInputStream());
-                dataOutputStream = new DataOutputStream(socket.getOutputStream());
-                System.out.println("iniciado");
+       socket = serverSocket.accept();
+       setIsStarted();
+       dataInputStream = new DataInputStream(socket.getInputStream());
+       dataOutputStream = new PrintStream(socket.getOutputStream());
+       System.out.println("iniciado");
 
-                jsonIn =  dataInputStream.readLine();
+       jsonIn =  dataInputStream.readLine();
 
-                System.out.println(jsonIn);
+       System.out.println(jsonIn);
 
-
-
-                Persona prueba = gson.fromJson(jsonIn, Persona.class);
-                System.out.println(prueba.getName());
-
-             //   System.out.println("???");
-
-             //   jsonOut = gson.toJson(new Persona("ElPepe","Stece",8,9));
-
-             ///   dataOutputStream.writeUTF(jsonOut);
+       Persona prueba = gson.fromJson(jsonIn, Persona.class);
+       System.out.println(prueba.getName());
 
 
 
-            }
         } catch (IOException ioException) {
             ioException.printStackTrace();
         }
 
     }
 
-
+    public void sendData(String jsonOut){
+        dataOutputStream.println(jsonOut);
+    }
     public void setIsStarted(){
         System.out.println("cambiao");
         isStarted = true;

@@ -1,6 +1,6 @@
 package cr.ac.tec.MonsTEC.MainWindow;
 
-import cr.ac.tec.MonsTEC.Game.GameWindow;
+import cr.ac.tec.MonsTEC.Game.GameBoard;
 import cr.ac.tec.MonsTEC.ServerSockets.Server;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -8,22 +8,17 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-import java.util.Observable;
-import java.util.Observer;
+public class CreateGame extends Pane {
 
-public class CreateGame extends Pane implements Observer {
-
-    public int port = (int) ((Math.random() * ((60000 - 5000) + 1)) + 5000);
-
-    public static Thread xxx;
+    final public int port = (int) ((Math.random() * ((60000 - 5000) + 1)) + 5000);
+    Stage stage;
 
     public CreateGame(Stage stage) {
 
-
+        this.stage = stage;
         System.out.println(port);
         btnBack.setLayoutX(10);
         btnBack.setLayoutY(555);
@@ -48,32 +43,23 @@ public class CreateGame extends Pane implements Observer {
             }
         });
 
-        startServer(port,lblIp.getText());
-
-        getChildren().addAll(btnBack,lblPort,lblIp);
-    //    Thread waitConnexion = new Thread(()-> {
-    //        nexWindow(stage);
-     //   });
-      //  waitConnexion.start();
-
-        xxx = new Thread(()->{
-            GridPane gameWindow = new GameWindow(stage);
-            Scene scene = new Scene(gameWindow,1000,600);
-            System.out.println("2222222");
-            while (true){
-                boolean a = Server.getIsStarted();
-                if (a){
-                    System.out.println("Cambiando");
-                    stage.setScene(scene);
-
-                    break;
-                }
+        btnStartGame.setPrefSize(125,50);
+        btnStartGame.setLayoutX(445);
+        btnStartGame.setLayoutY(460);
+        btnStartGame.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent actionEvent) {
+                nexWindow(); //poner una forma para que no pase de ventana en caso de que no se inicie el server
             }
-            System.out.println("salido");
         });
-        xxx.start();
 
-    }
+
+        startServer(port,lblIp.getText());
+        getChildren().addAll(btnBack,lblPort,lblIp,btnStartGame);
+        };
+
+
+
 
     private void startServer(int port, String ip) {
         Server server = new Server(port,ip);
@@ -86,37 +72,14 @@ public class CreateGame extends Pane implements Observer {
     Label lblPort = new Label(port+"");
     Label lblIp = new Label("127.0.0.1");
     Button btnBack = new Button("Atrás");
+    Button btnStartGame = new Button("Iniciar juego");
 
-    public void nexWindow(Stage stage){
-        GridPane gameWindow = new GameWindow(stage);
-        Scene scene = new Scene(gameWindow,1000,600);
-        System.out.println("2222222");
-        while (true){
-            boolean a = Server.getIsStarted();
-            if (a){
-                System.out.println("Cambiando");
-                stage.setScene(scene);
-
-                break;
-            }
-        }
-        System.out.println("salido");
-      //
+    public void nexWindow(){
+        BorderPane gameBoard = new GameBoard(stage);
+        Scene scene = new Scene(gameBoard,1000,600);
+        stage.setScene(scene);
 
     }
 
 
-    /**
-     * This method is called whenever the observed object is changed. An
-     * application calls an {@code Observable} object's
-     * {@code notifyObservers} method to have all the object's
-     * observers notified of the change.
-     *
-     * @param o   the observable object.
-     * @param arg an argument passed to the {@code notifyObservers}
-     */
-    @Override
-    public void update(Observable o, Object arg) {
-
-    }
 }

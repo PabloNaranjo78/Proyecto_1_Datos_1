@@ -16,6 +16,7 @@ public class Client implements Runnable {
     int port;
     Socket socket;
     DataInputStream dataInputStream;
+
     PrintStream dataOutputStream;
     String jsonOut;
     String jsonIn;
