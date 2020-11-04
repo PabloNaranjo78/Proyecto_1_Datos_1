@@ -81,6 +81,13 @@ public class Deckplayer {
             cant--;
         }
     }
+
+    public void popXCard(Stack deck, int cant){
+        while(cant!=0){
+            deck.pop();
+            cant--;
+        }
+    }
 }
 
 
