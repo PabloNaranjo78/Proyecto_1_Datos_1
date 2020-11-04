@@ -72,7 +72,7 @@ public class Deckplayer {
      *             agregar 3 cartas, deberá entrar ingresar un 2 o si quiere agregar
      *             9 cartas, ingresa un 8
      */
-    public void addXCards(Stack deck, int cant){
+    public void pushXCards(Stack deck, int cant){
         TypeCarta[] tc = genAllCards(genListCards());
         while(cant!=-1){
             randomCardsID = (int) (Math.random() * 40);

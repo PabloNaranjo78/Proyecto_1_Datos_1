@@ -9,7 +9,7 @@ public class MainJSON {
 
         Deckplayer deckp1 =  new Deckplayer();
         System.out.println(deckp1.getDeck().getCardCounter());
-        deckp1.addXCards(deckp1.getDeck(),9); //Ejemplo de agregado de 10 cartas
+        deckp1.pushXCards(deckp1.getDeck(),9); //Ejemplo de agregado de 10 cartas
         System.out.println(deckp1.getDeck().getCardCounter());
     }
 
