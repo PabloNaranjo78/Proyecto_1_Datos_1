@@ -41,7 +41,7 @@ public class Deckplayer {
         TypeCarta[] tc = c.getTcarta();
 
 
-        while (deck.getCardCounter() <= 20) {
+        while (deck.getCardCounter() <= 19) {
             randomCardsID = (int) (Math.random() * 40);
             for (int e = 0; e < 40; e++) {
                 if (tc[e].getID() == randomCardsID) {
@@ -52,7 +52,6 @@ public class Deckplayer {
 
         }
 
-        deck.pop(); //Este pop es porque por alguna razón crea una carta extra con la última duplicada
 
     }
 

@@ -15,6 +15,7 @@ public class GameBoard extends BorderPane {
 
     VBox cardHistoryBox = new VBox();
     Pane bottomPane = new Pane();
+    Pane topPane = new Pane();
     ScrollPane cardHistoryScrollPane = new ScrollPane();
     int lifePoint = 1000;
     int enemyLifePoints = 1000;
@@ -28,7 +29,6 @@ public class GameBoard extends BorderPane {
         sendButton.setLayoutX(900);
 
 
-
         sendButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -36,10 +36,22 @@ public class GameBoard extends BorderPane {
             }
         });
 
+
+        //Top Pane
+        Label cardsHistoryTitle = new Label("Historial de cartas");
+
+        topPane.getChildren().addAll(cardsHistoryTitle);
+
+        //Bottom Pane
         bottomPane.getChildren().addAll(sendButton);
+
+        //Scroll Pane
         cardHistoryScrollPane.setContent(cardHistoryBox);
         cardHistoryScrollPane.setPrefSize(80,80);
         cardHistoryBox.heightProperty().addListener(observable -> cardHistoryScrollPane.setVvalue(1D)); //Hace que siempre esté abajo la barra
+
+        //Border Pane
+        setTop(topPane);
         setLeft(cardHistoryScrollPane);
         setBottom(bottomPane);
     }

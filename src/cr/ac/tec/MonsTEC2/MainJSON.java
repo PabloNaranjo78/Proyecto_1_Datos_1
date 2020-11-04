@@ -21,7 +21,7 @@ public class MainJSON {
 
 
         Deckplayer deckp1 =  new Deckplayer();
-        System.out.println(deckp1.getDeck().peek().getName());
+   //     System.out.println(deckp1.getDeck().peek().getName());
         System.out.println(deckp1.getDeck().getCardCounter());
     //    deckp1.getDeck().pop();
     //    System.out.println(deckp1.getDeck().peek().getName());
