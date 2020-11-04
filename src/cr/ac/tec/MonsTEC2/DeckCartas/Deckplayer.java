@@ -10,11 +10,9 @@ import java.io.IOException;
 
 public class Deckplayer {
 
-    private StackDeck deck = new StackDeck();
+    private Stack deck = new Stack();
+    int randomCardsID;
 
-//    public Deckplayer(StackDeck deck) {
-//        this.deck = deck;
-//    }
 
     public Deckplayer() {
 
@@ -42,21 +40,25 @@ public class Deckplayer {
 
         TypeCarta[] tc = c.getTcarta();
 
-//        StackDeck deck = new StackDeck();
-//        deck.push(tc[5]);
-//        System.out.println(deck);
 
-//        for (int i = 0; i < 10; i++) {
+        while (deck.getCardCounter() <= 20) {
+            randomCardsID = (int) (Math.random() * 40);
+            for (int e = 0; e < 40; e++) {
+                if (tc[e].getID() == randomCardsID) {
+                    System.out.println(tc[e].getName());
+                    deck.push(tc[e]);
+                }
+            }
 
-//            deck.push(tc[i]);
-            deck.push(tc[0]);
-            deck.push(tc[1]);
-            deck.push(tc[2]);
-            System.out.println(deck);
+        }
 
-//            System.out.println("yep"+ i);
-//        }
+        deck.pop(); //Este pop es porque por alguna razón crea una carta extra con la última duplicada
+
     }
 
+    public Stack getDeck() {
+        return deck;
+    }
 }
+
 
