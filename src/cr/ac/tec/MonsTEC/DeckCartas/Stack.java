@@ -1,14 +1,7 @@
-package cr.ac.tec.MonsTEC2.DeckCartas;
+package cr.ac.tec.MonsTEC.DeckCartas;
 
-import com.google.gson.Gson;
 import cr.ac.tec.MonsTEC.Tools.Node;
-import cr.ac.tec.MonsTEC2.DeckCartas.CardTypes.TypeCarta;
-
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.LinkedList;
+import cr.ac.tec.MonsTEC.DeckCartas.CardTypes.TypeCarta;
 
 public class Stack {
 

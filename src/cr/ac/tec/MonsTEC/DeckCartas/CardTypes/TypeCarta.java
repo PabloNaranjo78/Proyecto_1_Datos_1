@@ -1,4 +1,4 @@
-package cr.ac.tec.MonsTEC2.DeckCartas.CardTypes;
+package cr.ac.tec.MonsTEC.DeckCartas.CardTypes;
 
 public class TypeCarta {
 

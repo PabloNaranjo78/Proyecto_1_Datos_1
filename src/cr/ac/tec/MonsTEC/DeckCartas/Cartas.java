@@ -1,6 +1,6 @@
-package cr.ac.tec.MonsTEC2.DeckCartas;
+package cr.ac.tec.MonsTEC.DeckCartas;
 
-import cr.ac.tec.MonsTEC2.DeckCartas.CardTypes.TypeCarta;
+import cr.ac.tec.MonsTEC.DeckCartas.CardTypes.TypeCarta;
 
 import java.util.Arrays;
 

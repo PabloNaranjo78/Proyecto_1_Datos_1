@@ -1,7 +1,6 @@
 package cr.ac.tec.MonsTEC.Tools;
 
-import com.sun.javafx.scene.control.skin.FXVK;
-import cr.ac.tec.MonsTEC2.DeckCartas.CardTypes.TypeCarta;
+import cr.ac.tec.MonsTEC.DeckCartas.CardTypes.TypeCarta;
 
 public class Node {
     private TypeCarta thisCard;
