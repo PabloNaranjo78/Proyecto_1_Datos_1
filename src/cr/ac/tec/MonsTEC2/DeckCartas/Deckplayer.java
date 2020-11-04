@@ -46,16 +46,16 @@ public class Deckplayer {
 //        deck.push(tc[5]);
 //        System.out.println(deck);
 
-        for (int i = 0; i < 10; i++) {
+//        for (int i = 0; i < 10; i++) {
 
-            deck.push(tc[i]);
-//            deck.push(tc[0]);
-//            deck.push(tc[1]);
-//            deck.push(tc[2]);
+//            deck.push(tc[i]);
+            deck.push(tc[0]);
+            deck.push(tc[1]);
+            deck.push(tc[2]);
             System.out.println(deck);
 
-            System.out.println("yep"+ i);
-        }
+//            System.out.println("yep"+ i);
+//        }
     }
 
 }

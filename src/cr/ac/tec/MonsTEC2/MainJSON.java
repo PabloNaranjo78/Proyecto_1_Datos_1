@@ -20,7 +20,7 @@ public class MainJSON {
 
 
         Deckplayer deckp1 = new Deckplayer();
-//        System.out.println(deckp1);
+        System.out.println(deckp1);
 //        Deckplayer deckp2 = new Deckplayer();
 //        System.out.println(deckp2);
     }
