@@ -4,13 +4,12 @@ import cr.ac.tec.MonsTEC.DeckCartas.Deckplayer;
 
 public class Secretos {
     String name;
-    int dañoTotal, vidaJugador, vidaEnemigo, cantidadCartas, i;
+    int vidaJugador, vidaEnemigo, cantidadCartas, i;
     Deckplayer deckplayer1, deckenemy;
 
 
-    public Secretos(String name, int dañoTotal, int vidaJugador, int vidaEnemigo, int cantidadCartas, Deckplayer deckplayer1, Deckplayer deckenemy) {
+    public Secretos(String name, int vidaJugador, int vidaEnemigo, int cantidadCartas, Deckplayer deckplayer1, Deckplayer deckenemy) {
         this.name = name;
-        this.dañoTotal = dañoTotal;
         this.vidaJugador = vidaJugador;
         this.vidaEnemigo = vidaEnemigo;
         this.cantidadCartas = cantidadCartas;
