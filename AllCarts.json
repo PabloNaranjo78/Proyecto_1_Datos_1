@@ -37,7 +37,7 @@
     },
     {
       "ID": 5,
-      "name": "Mountruo desconocido",
+      "name": "Monstruo desconocido",
       "cost": 175,
       "dmg_fct": 25,
       "type": "Esbirro"
