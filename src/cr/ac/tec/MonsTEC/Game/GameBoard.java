@@ -7,8 +7,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.*;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class GameBoard extends BorderPane {
@@ -22,6 +24,8 @@ public class GameBoard extends BorderPane {
     Label lifePointsLabel = new Label(""+lifePoint);
     Label enemyLifePointsLabel  = new Label(""+enemyLifePoints);
 
+    HBox cardsHand = new HBox();
+    ScrollPane cardHandScrollPane = new ScrollPane();
 
     public GameBoard(Stage stage){
 
@@ -39,15 +43,17 @@ public class GameBoard extends BorderPane {
 
         //Top Pane
         Label cardsHistoryTitle = new Label("Historial de cartas");
-
         topPane.getChildren().addAll(cardsHistoryTitle);
 
-        //Bottom Pane
-        bottomPane.getChildren().addAll(sendButton);
 
-        //Scroll Pane
+        //Bottom Pane
+        cardHandScrollPane.setContent(cardsHand);
+        cardHandScrollPane.setPrefSize(80,80);
+        bottomPane.getChildren().addAll(sendButton,cardHandScrollPane);
+
+        //Scroll Pane History
         cardHistoryScrollPane.setContent(cardHistoryBox);
-        cardHistoryScrollPane.setPrefSize(80,80);
+        cardHistoryScrollPane.setPrefSize(85,80);
         cardHistoryBox.heightProperty().addListener(observable -> cardHistoryScrollPane.setVvalue(1D)); //Hace que siempre esté abajo la barra
 
         //Border Pane
@@ -59,6 +65,7 @@ public class GameBoard extends BorderPane {
         Image cardImage =  new Image("/cr/ac/tec/MonsTEC/Resources/CardsImg/"+nameCard+".png",90,90,true,true);
         ImageView card = new ImageView(cardImage);
         cardHistoryBox.getChildren().add(card);
+        cardsHand.getChildren().add(card);
     }
 
     public void setImage(){
