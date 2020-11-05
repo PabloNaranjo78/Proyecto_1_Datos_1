@@ -35,13 +35,11 @@ public class Stack {
         return this.node.getThisCard();
     }
 
-    public void addCard(){
+    private void addCard(){
         this.cardCounter++;
     }
-    public void restCard(){
+    private void restCard(){
         this.cardCounter--;
     }
-    public int getCardCounter(){
-        return cardCounter;
-    }
+    public int getCardCounter(){ return cardCounter;}
 }

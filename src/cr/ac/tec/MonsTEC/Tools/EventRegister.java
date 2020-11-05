@@ -2,15 +2,17 @@ package cr.ac.tec.MonsTEC.Tools;
 
 public class EventRegister {
 
-    String card;
+    String card = null;
     int life;
     int damage;
     //Falta uno para controlar eventos especiales
 
-    public EventRegister(String card, int life, int damage) {
-        this.card = card;
-        this.life = life;
-        this.damage = damage;
+
+    public EventRegister() {
+    }
+
+    public void addDamage(int dmg){
+        this.damage+=dmg;
     }
 
     public String getCard() {
