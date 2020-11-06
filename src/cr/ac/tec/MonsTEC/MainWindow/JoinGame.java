@@ -14,7 +14,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- *
+ *Pasa a una pantalla donde se pide que se ingrese la ip y el socket de la partida, y una vez ingresados,
+ * se pasa al board del juego
  */
 public class JoinGame extends Pane {
 
@@ -23,7 +24,8 @@ public class JoinGame extends Pane {
     public static Logger log = LoggerFactory.getLogger(JoinGame.class); //Logger
 
     /**
-     *
+     * Se definen valores de la interfaz, y la interfaz en si, junto con las acciones de los respectivos botones,
+     * los cuales son el de atras y el de iniciar el juego
      * @param stage
      */
     public JoinGame(Stage stage) {
@@ -66,7 +68,7 @@ public class JoinGame extends Pane {
     Button btnBack = new Button("Atrás");
 
     /**
-     *
+     * Se inicia los sockets del cliente
      */
     public void startServer(){
         Client client = new Client(Integer.parseInt(txfPort.getText()),txfIp.getText());
@@ -75,7 +77,7 @@ public class JoinGame extends Pane {
     }
 
     /**
-     *
+     * Pasa al siguiente board
      */
     public void nexWindow(){
         BorderPane gameBoard = new GameBoard(stage);
