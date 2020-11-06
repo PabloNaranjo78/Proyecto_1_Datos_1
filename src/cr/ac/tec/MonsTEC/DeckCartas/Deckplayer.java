@@ -8,12 +8,19 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+/**
+ * Objeto que posteriormente seran los decks de cartas que recibiran los jugadores, seran stacks con una
+ * cantidad de 16 cartas, las cuales seran elejidas de manera aleatoria a partir de un archivo JSON,
+ * el cual tambien sera procesado aqui
+ */
 public class Deckplayer {
 
     private Stack deck = new Stack();
     int randomCardsID;
 
-
+    /**
+     * Se creara el deck a partir de cartas elegidas de manera aleatoria con la ayuda de math.random
+     */
     public Deckplayer() {
         TypeCarta[] tc = genAllCards(genListCards());
 
@@ -25,10 +32,14 @@ public class Deckplayer {
                     deck.push(tc[e]);
                 }
             }
-
         }
-
     }
+
+    /**
+     * Aqui se leera el archivo JSON con la informacion de todas las cartas, con la ayuda de GSON,
+     * y los objetos extraidos seran tipo Cartas
+     * @return Objetos tipo Cartas, extraidos del JSON
+     */
     public Cartas genListCards(){
         String json = "";
         BufferedReader br;
@@ -52,16 +63,25 @@ public class Deckplayer {
         return c;
     }
 
+    /**
+     * Se liga a c con TypeCarta, para poder acceder a los metodos de esta clase
+     * @param c Objeto Cartas
+     * @return tc, quien puede acceder a los metodos de TypeCarta a travez de Cartas
+     */
     public TypeCarta[] genAllCards(Cartas c){
         TypeCarta[] tc = c.getTcarta();
         return tc;
     }
 
+    /**
+     * Getter de deck
+     * @return deck
+     */
     public Stack getDeck() {
         return deck;
     }
 
-    /***
+    /**
      * Agrega una cantidad X de cartas a un mazo
      * @param deck tiene que ser un objetivo tipo deck, ejemplo:
      *             si el nombre del deck es deckCartas, se tiene que pedirle
@@ -82,6 +102,11 @@ public class Deckplayer {
         }
     }
 
+    /**
+     * Elimina una x cantidad del mazo
+     * @param deck "
+     * @param cant "
+     */
     public void popXCard(Stack deck, int cant){
         while(cant!=0){
             deck.pop();

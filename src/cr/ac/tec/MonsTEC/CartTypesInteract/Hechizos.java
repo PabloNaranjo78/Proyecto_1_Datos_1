@@ -3,12 +3,27 @@ package cr.ac.tec.MonsTEC.CartTypesInteract;
 import cr.ac.tec.MonsTEC.DeckCartas.Cartas;
 import cr.ac.tec.MonsTEC.DeckCartas.Deckplayer;
 
+/**
+ * Se ejecutara los efectos que tengan las cartas tipo hechizos al ser utilizados en el juego
+ */
 public class Hechizos {
 
     String name;
     int vidaJugador, vidaEnemigo, cantidadCartas, manaPlayer, manaEnemy;
     Deckplayer deckPlayer1, deckEnemy;
 
+    /**
+     * Constructores de los objetos que se recibirian, junto a la ejecucion de las acciones de que provocaria el
+     * hechizo en la partida
+     * @param name nombre de la carta que se usa en el juego
+     * @param vidaJugador vida actual que tiene el jugador
+     * @param vidaEnemigo vida actual que tiene el oponente
+     * @param cantidadCartas cantidad de cartas del deck del jugador
+     * @param manaPlayer cantidad de mana que tiene el jugador
+     * @param manaEnemy cantidad de mana que tiene el oponente
+     * @param deckPlayer1 deck del jugador
+     * @param deckEnemy deck del oponente
+     */
     public Hechizos(String name, int vidaJugador, int vidaEnemigo, int cantidadCartas, int manaPlayer, int manaEnemy, Deckplayer deckPlayer1, Deckplayer deckEnemy) {
         this.name = name;
         this.vidaJugador = vidaJugador;

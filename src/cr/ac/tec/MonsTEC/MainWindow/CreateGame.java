@@ -11,11 +11,20 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+/**
+ * Se pasa a una ventana donde se muestra la ip y socket de la partida, para que el segundo jugador
+ * utilice esos datos para ingresar al juego del que el usuario es host
+ */
 public class CreateGame extends Pane {
 
     final public int port = (int) ((Math.random() * ((60000 - 5000) + 1)) + 5000);
     Stage stage;
 
+    /**
+     *Se definen valores de la interfaz, y la interfaz en si, junto con las acciones de los respectivos botones,
+     *los cuales son el de atras y el de iniciar el juego
+     * @param stage
+     */
     public CreateGame(Stage stage) {
 
         this.stage = stage;
@@ -74,6 +83,9 @@ public class CreateGame extends Pane {
     Button btnBack = new Button("Atrás");
     Button btnStartGame = new Button("Iniciar juego");
 
+    /**
+     *Hace que se pasa hacia la siguiente ventana
+     */
     public void nexWindow(){
         BorderPane gameBoard = new GameBoard(stage);
         Scene scene = new Scene(gameBoard,1000,600);
