@@ -214,7 +214,24 @@ public class GameBoard extends BorderPane {
     }
 
     private void addCartToSlot(){
-        //toma carta del deck y la mete en un slot
+        if (this.isUsableCardSlot1){
+
+        }
+        if(this.isUsableCardSlot2){
+
+        }
+        if(this.isUsableCardSlot3){
+
+        }
+        if(this.isUsableCardSlot4){
+
+        }
+        if (this.isUsableCardSlot5){
+
+        }
+        else {
+            System.out.println("No hay slots disponibles");
+        }
     }
 
     private void card1Slot(TypeCarta card){
@@ -223,15 +240,15 @@ public class GameBoard extends BorderPane {
         cardSlot1Pane.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
-                if (usableMana >= card.getCost()) {
+                if (usableMana >= card.getCost() && !(isUsableCardSlot1)) {
                     System.out.println("Carta1");
                     actMana(card.getCost());
                     eventRegister.addDamage(executeCard(card));
                     cardSlot1Pane.getChildren().clear();
                     addToHistory(card);
                     addToTable(card);
+                    actCardInDeck();
                     isUsableCardSlot1 = true;
-                    //deshabilitar
                 }
             }
         });
