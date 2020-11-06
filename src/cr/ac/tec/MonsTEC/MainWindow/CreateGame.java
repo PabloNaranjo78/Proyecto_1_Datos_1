@@ -16,6 +16,10 @@ public class CreateGame extends Pane {
     final public int port = (int) ((Math.random() * ((60000 - 5000) + 1)) + 5000);
     Stage stage;
 
+    /**
+     *
+     * @param stage
+     */
     public CreateGame(Stage stage) {
 
         this.stage = stage;
@@ -74,6 +78,9 @@ public class CreateGame extends Pane {
     Button btnBack = new Button("Atrás");
     Button btnStartGame = new Button("Iniciar juego");
 
+    /**
+     *
+     */
     public void nexWindow(){
         BorderPane gameBoard = new GameBoard(stage);
         Scene scene = new Scene(gameBoard,1000,600);

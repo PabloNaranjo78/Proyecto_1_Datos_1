@@ -12,10 +12,19 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
+/**
+ * Se crea la ventana inicial del juego, la cual da a elegir entre ser host de un juego,
+ * o a unirse a un juego mediante dos botones.
+ */
 public class MenuWindow extends Pane {
     Stage primaryStage;
     public Scene createGameScene;
 
+    /**
+     * Se crea una ventana con dos botones que dan la opcion de ser host de juego o de unirse a uno, dependiendo de
+     * lo que elija el usuario (al hacer click en el boton correspondiente), se ejecutara JoinGame o CreateGame
+     * @param window
+     */
     public MenuWindow(Stage window){
         this.primaryStage = window;
 

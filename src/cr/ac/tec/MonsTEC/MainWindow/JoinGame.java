@@ -13,12 +13,19 @@ import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ *
+ */
 public class JoinGame extends Pane {
 
     Stage stage;
 
     public static Logger log = LoggerFactory.getLogger(JoinGame.class); //Logger
 
+    /**
+     *
+     * @param stage
+     */
     public JoinGame(Stage stage) {
 
         this.stage = stage;
@@ -58,12 +65,18 @@ public class JoinGame extends Pane {
     Button btnStartGame = new Button("Iniciar juego");
     Button btnBack = new Button("Atrás");
 
+    /**
+     *
+     */
     public void startServer(){
         Client client = new Client(Integer.parseInt(txfPort.getText()),txfIp.getText());
         Thread clientThread = new Thread(client);
         clientThread.start();
     }
 
+    /**
+     *
+     */
     public void nexWindow(){
         BorderPane gameBoard = new GameBoard(stage);
         Scene scene = new Scene(gameBoard,1000,600);
