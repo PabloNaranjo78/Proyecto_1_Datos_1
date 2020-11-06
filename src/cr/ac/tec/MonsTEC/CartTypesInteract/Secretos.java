@@ -2,12 +2,24 @@ package cr.ac.tec.MonsTEC.CartTypesInteract;
 
 import cr.ac.tec.MonsTEC.DeckCartas.Deckplayer;
 
+/**
+ * Se ejecutara los efectos que tengan las cartas tipo secretos al ser utilizados en el juego
+ */
 public class Secretos {
     String name;
     int vidaJugador, vidaEnemigo, cantidadCartas, i;
     Deckplayer deckplayer1, deckenemy;
 
-
+    /**
+     * Constructores de los objetos que se recibirian, junto a la ejecucion de las acciones de que provocaria el
+     * secreto en la partida
+     * @param name nombre de la carta que se usa en el juego
+     * @param vidaJugador vida actual que tiene el jugador
+     * @param vidaEnemigo vida actual que tiene el oponente
+     * @param cantidadCartas cantidad de cartas del deck del jugador
+     * @param deckplayer1 deck del jugador
+     * @param deckenemy deck del oponente
+     */
     public Secretos(String name, int vidaJugador, int vidaEnemigo, int cantidadCartas, Deckplayer deckplayer1, Deckplayer deckenemy) {
         this.name = name;
         this.vidaJugador = vidaJugador;
