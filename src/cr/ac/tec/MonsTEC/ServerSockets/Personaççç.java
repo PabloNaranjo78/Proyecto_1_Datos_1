@@ -2,16 +2,16 @@ package cr.ac.tec.MonsTEC.ServerSockets;
 
 import java.io.Serializable;
 
-public class Persona implements Serializable {
+public class Personaççç implements Serializable {
     private String name;
     private String type;
     private int cost;
     private int dmg;
 
-    public Persona() {
+    public Personaççç() {
     }
 
-    public Persona(String name, String type, int cost, int dmg) {
+    public Personaççç(String name, String type, int cost, int dmg) {
         this.name = name;
         this.type = type;
         this.cost = cost;

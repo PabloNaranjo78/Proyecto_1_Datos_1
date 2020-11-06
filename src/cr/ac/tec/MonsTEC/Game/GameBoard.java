@@ -76,26 +76,28 @@ public class GameBoard extends BorderPane {
         sendButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-            //    addElementToVBox();
-                card1Slot(myDeck.peek());
-                card2Slot(myDeck.peek());
-                card3Slot(myDeck.peek());
-                card4Slot(myDeck.peek());
-                card5Slot(myDeck.peek());
-                //manda el registro al socket
-                //Limpia el registro
+                System.out.println(eventRegister.toString());
+                cardsInTable.getChildren().clear();
             }
         });
 
         takeCardFromDeckButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-//                executeCard(myDeck.peek());
+                if (cardsInDeck > 0){
+                    addCartToSlot(myDeck.peek());
+                }
                 System.out.println("ejecutando");
                 System.out.println(eventRegister.getDamage());
-                System.out.println(isUsableCardSlot1);
             }
         });
+
+        //Add 4 initial cards to the hand
+        card1Slot(myDeck.peek());
+        card2Slot(myDeck.peek());
+        card3Slot(myDeck.peek());
+        card4Slot(myDeck.peek());
+    //    card5Slot(myDeck.peek());
 
 
         //Top Pane
@@ -179,7 +181,9 @@ public class GameBoard extends BorderPane {
         setTopElements(this.enemyLifePoints,this.usableMana,this.lifePoint,this.cardsInDeck);
     }
     public void actEnemyLife(int life){
+        System.out.println(life+"   " +enemyLifePoints);
         this.enemyLifePoints-=life;
+        System.out.println(life+"   " +enemyLifePoints);
         setTopElements(this.enemyLifePoints,this.usableMana,this.lifePoint,this.cardsInDeck);
     }
     public void actMyLife(int life){
@@ -199,39 +203,50 @@ public class GameBoard extends BorderPane {
             System.out.println(this.eventRegister.getDamage());
             this.eventRegister.addDamage(esbirroEvent.DmgEsbirro());
             System.out.println(this.eventRegister.getDamage());
-            actEnemyLife(this.eventRegister.getDamage());
+            actEnemyLife(card.getDmg_fct());
             return esbirroEvent.DmgEsbirro();
         }
         if (card.getType().equals("Hechizo")) {
             System.out.println("Es un hechizo xdxdxd");
-            return 1;
+            return 0;
         }
         if (card.getType().equals("Secreto")){
             System.out.println("Shh secreto :v");
-            return 1;
+            return 0;
         }
         return 0;
     }
 
-    private void addCartToSlot(){
-        if (this.isUsableCardSlot1){
-
+    private void addCartToSlot(TypeCarta card){
+        if(cardsInDeck > 0){
+            boolean isInHand = false;
+        if (this.isUsableCardSlot1 && !(isInHand)){
+            isInHand = true;
+            actCardInDeck();
+            card1Slot(card);
         }
-        if(this.isUsableCardSlot2){
-
+        if(this.isUsableCardSlot2 && !(isInHand)){
+            isInHand = true;
+            actCardInDeck();
+            card2Slot(card);
         }
-        if(this.isUsableCardSlot3){
-
+        if(this.isUsableCardSlot3 && !(isInHand)){
+            isInHand = true;
+            actCardInDeck();
+            card3Slot(card);
         }
-        if(this.isUsableCardSlot4){
-
+        if(this.isUsableCardSlot4 && !(isInHand)){
+            isInHand = true;
+            actCardInDeck();
+            card4Slot(card);
         }
-        if (this.isUsableCardSlot5){
-
+        if (this.isUsableCardSlot5 && !(isInHand)){
+            actCardInDeck();
+            card5Slot(card);
         }
         else {
-            System.out.println("No hay slots disponibles");
-        }
+            System.out.println("Slot lleno");
+        }}
     }
 
     private void card1Slot(TypeCarta card){
@@ -247,7 +262,6 @@ public class GameBoard extends BorderPane {
                     cardSlot1Pane.getChildren().clear();
                     addToHistory(card);
                     addToTable(card);
-                    actCardInDeck();
                     isUsableCardSlot1 = true;
                 }
             }
@@ -266,8 +280,11 @@ public class GameBoard extends BorderPane {
                 if (usableMana >= card.getCost()) {
                     System.out.println("Carta2");
                     actMana(card.getCost());
-                    eventRegister.addDamage(card.getDmg_fct());
-                    //deshabilitar
+                    eventRegister.addDamage(executeCard(card));
+                    cardSlot2Pane.getChildren().clear();
+                    addToHistory(card);
+                    addToTable(card);
+                    isUsableCardSlot2 = true;
                 }
             }
         });
@@ -284,8 +301,11 @@ public class GameBoard extends BorderPane {
                 if (usableMana >= card.getCost()) {
                     System.out.println("Carta3");
                     actMana(card.getCost());
-                    eventRegister.addDamage(card.getDmg_fct());
-                    //deshabilitar
+                    eventRegister.addDamage(executeCard(card));
+                    cardSlot3Pane.getChildren().clear();
+                    addToHistory(card);
+                    addToTable(card);
+                    isUsableCardSlot3 = true;
                 }
             }
         });
@@ -303,8 +323,11 @@ public class GameBoard extends BorderPane {
                 if (usableMana >= card.getCost()) {
                     System.out.println("Carta4");
                     actMana(card.getCost());
-                    eventRegister.addDamage(card.getDmg_fct());
-                    //deshabilitar
+                    eventRegister.addDamage(executeCard(card));
+                    cardSlot4Pane.getChildren().clear();
+                    addToHistory(card);
+                    addToTable(card);
+                    isUsableCardSlot4 = true;
                 }
             }
         });
@@ -322,8 +345,11 @@ public class GameBoard extends BorderPane {
                 if (usableMana >= card.getCost()) {
                     System.out.println("Carta5");
                     actMana(card.getCost());
-                    eventRegister.addDamage(card.getDmg_fct());
-                    //deshabilitar
+                    eventRegister.addDamage(executeCard(card));
+                    cardSlot5Pane.getChildren().clear();
+                    addToHistory(card);
+                    addToTable(card);
+                    isUsableCardSlot5 = true;
                 }
             }
         });
@@ -332,5 +358,5 @@ public class GameBoard extends BorderPane {
 
     }
 
-    }
 
+}

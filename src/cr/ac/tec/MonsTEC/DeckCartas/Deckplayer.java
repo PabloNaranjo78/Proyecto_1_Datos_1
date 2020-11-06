@@ -17,7 +17,7 @@ public class Deckplayer {
     public Deckplayer() {
         TypeCarta[] tc = genAllCards(genListCards());
 
-        while (deck.getCardCounter() <= 19) {
+        while (deck.getCardCounter() <= 20) {
             randomCardsID = (int) (Math.random() * 40);
             for (int e = 0; e < 40; e++) {
                 if (tc[e].getID() == randomCardsID) {

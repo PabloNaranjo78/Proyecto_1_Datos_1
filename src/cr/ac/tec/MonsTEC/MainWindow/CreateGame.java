@@ -62,7 +62,7 @@ public class CreateGame extends Pane {
 
 
     private void startServer(int port, String ip) {
-        Server server = new Server(port,ip);
+        Server server = new Server(port);
         Thread serverThread = new Thread(server);
         serverThread.start();
 
