@@ -55,6 +55,8 @@ public class GameBoard extends BorderPane {
     public Label enemyLifePointsLabel  = new Label("Vida Enemiga: "+enemyLifePoints);
     Label manaPointsLabel = new Label("Mana: "+usableMana);
     Label cardsHistoryTitle = new Label("Historial de cartas");
+    Label winnerLabel = new Label("Felicidades has ganado");
+    Label gameOver = new Label("Fin del juego, perdiste");
 
     VBox cardHistoryBox = new VBox();
     ScrollPane cardHistoryScrollPane = new ScrollPane();
@@ -127,6 +129,9 @@ public class GameBoard extends BorderPane {
              */
             public void handle(ActionEvent actionEvent) {
                 actGameBoard();
+                if (enemyLifePoints == 0){
+                    cardsInTable.getChildren().add(winnerLabel);
+                }
             }
         });
 
@@ -256,6 +261,9 @@ public class GameBoard extends BorderPane {
         this.lifePoint-=life;
         eventRegister.setHealLife();
         setTopElements(this.enemyLifePoints,this.usableMana,this.lifePoint,this.cardsInDeck);
+        if (lifePoint == 0){
+            cardsInTable.getChildren().add(winnerLabel);
+        }
     }
 
     /***
