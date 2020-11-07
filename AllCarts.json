@@ -4,7 +4,7 @@
       "ID": 0,
       "name": "Martillero celestial",
       "cost": 455,
-      "dmg_fct": 65,
+      "dmg_fct": 80,
       "type": "Esbirro"
     },
     {

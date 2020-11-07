@@ -16,6 +16,11 @@ public class Client extends Thread {
     private String ip;
     private static String in_message;
 
+    /***
+     * Crea el cliente
+     * @param port puerto
+     * @param ip ip
+     */
     public Client(int port,String ip){
         this.port = port;
         this.ip = ip;
@@ -23,20 +28,18 @@ public class Client extends Thread {
 
     public void run(){
         try {
+            System.out.println(port);
             client = new Socket(ip,port);
             in_data = new BufferedReader(new InputStreamReader(client.getInputStream()));
-    //        data = new BufferedReader(new InputStreamReader(System.in));
-            out_data = new PrintStream(client.getOutputStream());
+            this.out_data = new PrintStream(client.getOutputStream());
             Thread incomingDataThreadClient = new Thread(()-> { //Crea un Thread para el manejo de mensajes nuevos.
                 while(true){
                     try {
                         in_message = in_data.readLine();
                         if (in_message!=null){
-                            System.out.println("Mensaje nuevo!!!");
-                     //       Controller.setFlag(); //Cambia el estado del flag para poder mostrar los mensajes.
+                            ServerController.setFlag();
                         }
                     } catch (IOException e) {
-                  //      log.error(e.getMessage(),e); //Envía el error al logger
                     }
                 }
             });
@@ -44,20 +47,17 @@ public class Client extends Thread {
 
         } catch (IOException e) {
                 e.printStackTrace();
-
         }
         }
-    /*** Envía mensajes nuevos
-    * Envía por el out_data un nuevo mensaje.
+    /*** Envía información nueva
+    * Envía por el out_data la nueva info.
      */
-    public static void send() {
-            //           messages = Controller.getMessage();   toma string de envío en event register
-        out_data.println(messages);
-
+    public static void send(String outJsonData) {
+        out_data.println(outJsonData);
 
     }
-    /***Devuelve el mensaje nuevo.
-     * @return Retorna el mesaje que se tiene en la entrada.
+    /***Devuelve la información nueva
+     * @return Retorna la información que se tiene en la entrada.
      */
     public static String getIn_message() {
         if (in_message == null){

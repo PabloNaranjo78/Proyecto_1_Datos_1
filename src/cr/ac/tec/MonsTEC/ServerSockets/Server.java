@@ -17,20 +17,21 @@ public class Server extends Thread {
     private static BufferedReader in_data;
     private static String in_message;
 
+    /***
+     * Servidor de sockets
+     * @param port puerto que se desea abrir
+     */
     public Server(int port){
         this.port = port;
     }
-
     /***
      * Este es llamado apenas se inicia el Thread, se encarga de iniciar el servidor con el puerto dado.
      */
     @Override
     public void run() {
-     //   log.debug("Iniciado en puerto:"+ port);
         try {
             server = new ServerSocket(port); //Declara el socket con el puerto.
         } catch (IOException e) {
-    //        log.error(e.getMessage(),e); //Envía el error al logger
         }
         socket = new Socket();
         while (true) {
@@ -39,16 +40,15 @@ public class Server extends Thread {
                 System.out.println("Conexión entrante lista");
                 in_data = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 out_data = new PrintStream(socket.getOutputStream());
-                Thread incomingDataThreadServer = new Thread(()-> { //Se crea un Thread para el manejo de la entrada de mensajes.
+                Thread incomingDataThreadServer = new Thread(()-> { //Se crea un Thread para el manejo de la entrada de información.
                     while(true){
                         try {
                             in_message = in_data.readLine();
                             if (in_message!=null){
                                 System.out.println("Nuevo mensaje");
-                      //          Controller.setFlag();   //Llama a setFlag() para cambiar el estado y que se pueda mostrar el mensaje en pantalla.
+                                ServerController.setFlag(); //Llama a setFlag() para cambiar el estado y que se pueda leer la info
                             }
                         } catch (IOException e) {
-                    //        log.error(e.getMessage(),e);//Envía el error al logger
                         }
                     }
                 });
@@ -56,14 +56,13 @@ public class Server extends Thread {
                 break;
             }
             catch (IOException e) {
-         //       log.error(e.getMessage(),e);//Envía el error al logger
             }
         }
     }
 
     /*** Devuelve el mensaje nuevo.
      *
-     * @return Retorna el mesaje que se tiene en la entrada.
+     * @return Retorna la información que se tiene en la entrada.
      * En caso de ser null, enviará un string vacío para evitar errores.
      */
     public static String getIn_message() {
@@ -76,13 +75,11 @@ public class Server extends Thread {
     }
 
     /***
-     * Envía un mansaje nuevo a la salida por el out_data.
+     * Envía la información al cliente
      */
-    public static void send() {
-  //      message = Controller.getMessage();   toma el mensaje
-        out_data.println(message);
-    }
+
+    public static void send(String outJsonData) {
+        out_data.println(outJsonData);
 
 
-
-}
+}}

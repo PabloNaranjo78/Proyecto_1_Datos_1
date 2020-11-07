@@ -6,8 +6,9 @@ package cr.ac.tec.MonsTEC.Tools;
 public class EventRegister {
 
     String card = null;
-    int life;
+    int healLife;
     int damage;
+    int mana;
     //Falta uno para controlar eventos especiales
 
     /**
@@ -44,18 +45,13 @@ public class EventRegister {
      * Getter de life (puntos de vida)
      * @return int life
      */
-    public int getLife() {
-        return life;
+    public int getHealLife(){
+        return this.healLife;
     }
 
-    /**
-     * Setter de life
-     * @param life int
-     */
-    public void setLife(int life) {
-        this.life = life;
+    public void setHealLife(){
+        this.healLife = 0;
     }
-
     /**
      * Getter de Damage
      * @return int damage
@@ -72,12 +68,42 @@ public class EventRegister {
         this.damage = damage;
     }
 
-    @Override
-    public String toString() {
-        return "EventRegister{" +
-                "card='" + card + '\'' +
-                ", life=" + life +
-                ", damage=" + damage +
-                '}';
+    public void cleanEventRegister(){
+        this.damage = 0;
+        this.mana = 0;
+        this.healLife = 0;
     }
+
+    /***
+     * Añana una cantidad X de mamá al jugador
+     * @param addmana cantidad de maná a agregar
+     */
+    public void addXMana(int addmana){
+        this.mana+=addmana;
+    }
+
+    /***
+     * Retorna el maná que se ha añadido
+     * @return entero con el mamá añadido
+     */
+    public int getMana(){
+        return this.mana;
+    }
+
+    /***
+     * Setter para el valor de mamá
+     * @param mana entero con el valor de mamá a asignar
+     */
+    public void setMana(int mana){
+        this.mana = mana;
+    }
+
+    /***
+     * Registro de curaciones hechas
+     * @param heal valor de curación a registrar
+     */
+    public void heal(int heal){
+        this.healLife = heal;
+    }
+
 }

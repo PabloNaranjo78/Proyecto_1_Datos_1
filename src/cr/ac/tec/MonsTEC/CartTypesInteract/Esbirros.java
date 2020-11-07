@@ -13,19 +13,16 @@ public class Esbirros {
      * Constructores de c y vida enemigo, junto a la ejecucion del daño de que provocaria el
      * esbirro a la vida enemiga
      * @param c Carta Esbirro que se estaria usando en el juego
-     * @param vidaEnemigo Vida del enemigo, al cual se le restara el daño que hizo el esbirro
      */
-    public Esbirros(TypeCarta c, int vidaEnemigo) {
+    public Esbirros(TypeCarta c) {
         this.c = c;
-        this.vidaEnemigo = vidaEnemigo;
-        DmgEsbirro();
     }
 
     /**
-     * Resta el daño que crea el esbirro a la vida del enemigo
+     * Devuelve el daño que hace la carta
      */
-    private void DmgEsbirro() {
-        vidaEnemigo -= c.getDmg_fct();
+    public int DmgEsbirro() {
+        return this.c.getDmg_fct();
     }
 
 }

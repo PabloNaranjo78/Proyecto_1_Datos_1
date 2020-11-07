@@ -1,7 +1,7 @@
 package cr.ac.tec.MonsTEC.MainWindow;
 
 import cr.ac.tec.MonsTEC.Game.GameBoard;
-import cr.ac.tec.MonsTEC.ServerSockets.Client;
+import cr.ac.tec.MonsTEC.ServerSockets.ServerController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -20,6 +20,7 @@ import org.slf4j.LoggerFactory;
 public class JoinGame extends Pane {
 
     Stage stage;
+    ServerController serverController;
 
     public static Logger log = LoggerFactory.getLogger(JoinGame.class); //Logger
 
@@ -60,7 +61,7 @@ public class JoinGame extends Pane {
                 }
         });
         getChildren().addAll(btnBack,txfIp,txfPort,btnStartGame);
-    }
+         }
 
     TextField txfPort = new TextField();
     TextField txfIp = new TextField();
@@ -71,16 +72,18 @@ public class JoinGame extends Pane {
      * Se inicia los sockets del cliente
      */
     public void startServer(){
-        Client client = new Client(Integer.parseInt(txfPort.getText()),txfIp.getText());
-        Thread clientThread = new Thread(client);
-        clientThread.start();
+        this.serverController = new ServerController(true,Integer.parseInt(txfPort.getText()),txfIp.getText());
+
+//        Client client = new Client(Integer.parseInt(txfPort.getText()),txfIp.getText());
+  //      Thread clientThread = new Thread(client);
+    //    clientThread.start();
     }
 
     /**
      * Pasa al siguiente board
      */
     public void nexWindow(){
-        BorderPane gameBoard = new GameBoard(stage);
+        BorderPane gameBoard = new GameBoard(stage,this.serverController);
         Scene scene = new Scene(gameBoard,1000,600);
         stage.setScene(scene);
     }

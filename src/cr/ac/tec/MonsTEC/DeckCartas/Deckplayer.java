@@ -104,8 +104,8 @@ public class Deckplayer {
 
     /**
      * Elimina una x cantidad del mazo
-     * @param deck "
-     * @param cant "
+     * @param deck deck de cartas
+     * @param cant cantidad de cartas a eliminar
      */
     public void popXCard(Stack deck, int cant){
         while(cant!=0){

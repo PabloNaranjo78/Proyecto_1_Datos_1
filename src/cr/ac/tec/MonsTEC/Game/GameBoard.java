@@ -1,9 +1,14 @@
 package cr.ac.tec.MonsTEC.Game;
 
+import com.google.gson.Gson;
 import cr.ac.tec.MonsTEC.CartTypesInteract.Esbirros;
+import cr.ac.tec.MonsTEC.CartTypesInteract.Hechizos;
+import cr.ac.tec.MonsTEC.CartTypesInteract.Secretos;
 import cr.ac.tec.MonsTEC.DeckCartas.CardTypes.TypeCarta;
 import cr.ac.tec.MonsTEC.DeckCartas.Deckplayer;
 import cr.ac.tec.MonsTEC.DeckCartas.Stack;
+import cr.ac.tec.MonsTEC.LinkedList.LinkedListHistory;
+import cr.ac.tec.MonsTEC.ServerSockets.ServerController;
 import cr.ac.tec.MonsTEC.Tools.CardHand;
 import cr.ac.tec.MonsTEC.Tools.EventRegister;
 import javafx.event.ActionEvent;
@@ -30,8 +35,8 @@ public class GameBoard extends BorderPane {
     int enemyLifePoints = 1000;
     int cardsInHand = 0;
     int cardsInDeck = 16;
-    int totalMana = 1000;
-    int usableMana = 100000000;
+    int totalMana = 500;
+    int usableMana = 500;
 
     boolean isUsableCardSlot1 = true;
     boolean isUsableCardSlot2 = true;
@@ -47,7 +52,7 @@ public class GameBoard extends BorderPane {
 
     Label lifePointsLabel = new Label("Su vida: "+lifePoint);
     Label cardsCounterLabel = new Label("Quedan "+cardsInDeck +" cartas");
-    Label enemyLifePointsLabel  = new Label("Vida Enemiga: "+enemyLifePoints);
+    public Label enemyLifePointsLabel  = new Label("Vida Enemiga: "+enemyLifePoints);
     Label manaPointsLabel = new Label("Mana: "+usableMana);
     Label cardsHistoryTitle = new Label("Historial de cartas");
 
@@ -63,43 +68,75 @@ public class GameBoard extends BorderPane {
     Deckplayer myDeckGen;
     Stack myDeck;
 
+    Gson gson = new Gson();
 
-    public GameBoard(Stage stage){
+    static EventRegister inEventRegister;
+
+    LinkedListHistory linkedListHistory = new LinkedListHistory();
+
+    /***
+     * Game Board es el tablero de juego donde se muestran e interactúa con las cartas del juego
+     * @param stage stage de java fx para controlar ventanas.
+     * @param serverController controlador del servidor hecho a partir de sockets
+     */
+    public GameBoard(Stage stage, ServerController serverController){
         this.myDeckGen = new Deckplayer();
         this.myDeck = myDeckGen.getDeck();
+        checkInData();
 
         Button sendButton = new Button("Ceder turno");
         Button takeCardFromDeckButton = new Button("Tomar una carta");
+        Button actDataButton = new Button("Actualizar");
+        actDataButton.setLayoutX(850);
+        actDataButton.setLayoutY(70);
         sendButton.setLayoutX(900);
         takeCardFromDeckButton.setLayoutX(800);
 
         sendButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
+            /***
+             * Ejecutado por el botón de envíar, envía la información al enemigo para que sea interpretada
+             * por medio de un string en formato Json.
+             * También limpia el tablero.
+             */
             public void handle(ActionEvent actionEvent) {
-                System.out.println(eventRegister.toString());
+                String outData = gson.toJson(eventRegister);
+                System.out.println(outData);
+                serverController.sendData(outData);
+                eventRegister.cleanEventRegister();
                 cardsInTable.getChildren().clear();
             }
         });
 
         takeCardFromDeckButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
+            /***
+             * Toma una carta del Stack de cartas, revisa que no esté vacía también.
+             */
             public void handle(ActionEvent actionEvent) {
                 if (cardsInDeck > 0){
                     addCartToSlot(myDeck.peek());
                 }
-                System.out.println("ejecutando");
-                System.out.println(eventRegister.getDamage());
             }
         });
 
-        //Add 4 initial cards to the hand
+        actDataButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            /***
+             * Refresca la información enviada por el enemigo.
+             */
+            public void handle(ActionEvent actionEvent) {
+                actGameBoard();
+            }
+        });
+
+        //Añade 4 cartas iniciales.
         card1Slot(myDeck.peek());
         card2Slot(myDeck.peek());
         card3Slot(myDeck.peek());
         card4Slot(myDeck.peek());
-    //    card5Slot(myDeck.peek());
 
-
+    /*Elementos gráficos*/
         //Top Pane
         enemyLifePointsLabel.setLayoutX(200);
         lifePointsLabel.setLayoutX(800);
@@ -120,7 +157,7 @@ public class GameBoard extends BorderPane {
         cardSlot4Pane.setLayoutX(500);
         cardSlot5Pane.setLayoutX(650);
         bottomPane.getChildren().addAll(sendButton,takeCardFromDeckButton,cardSlot1Pane,cardSlot2Pane,
-                cardSlot3Pane,cardSlot4Pane,cardSlot5Pane);
+                cardSlot3Pane,cardSlot4Pane,cardSlot5Pane,actDataButton);
 
         //Scroll Pane History
         cardHistoryScrollPane.setContent(cardHistoryBox);
@@ -142,22 +179,33 @@ public class GameBoard extends BorderPane {
 //        setCenter(cardSlot1Pane);
 
     }
+
+    /***
+     * Añade una carta al tablero central
+     * @param card objeto tipo carta que se desea poner en el tablero
+     */
     public void addToTable(TypeCarta card){
         CardHand card1 = new CardHand(card,90);
-    //    cardHistoryBox.getChildren().add(card1.getCardImg());
         cardsInTable.getChildren().add(card1.getCardImg());
-
- //       this.myDeck.pop();
     }
 
-    public void setImage(){
-    }
-
+    /***
+     * Añade una carta al historial y a la lista enlazada de Historial de cartas.
+     * @param card objeto tipo carta que se desea añador
+     */
     private void addToHistory(TypeCarta card){
+        linkedListHistory.addNewCard(card);
         CardHand card1 = new CardHand(card,90);
         cardHistoryBox.getChildren().add(card1.getCardImg());
     }
 
+    /***
+     * Actualiza los elementos del panel superior.
+     * @param enemyLifePoints   Puntos de vida enemigos
+     * @param usableMana    mana utilizable
+     * @param lifePoint puntos de vida
+     * @param cardsInDeck número de cartas restantes en el deck
+     */
     private void setTopElements(int enemyLifePoints,int usableMana,int lifePoint,int cardsInDeck){
         topPane.getChildren().clear();
         Label enemyLifePointsLabel  = new Label("Vida Enemiga: "+enemyLifePoints);
@@ -176,47 +224,99 @@ public class GameBoard extends BorderPane {
         setTop(topPane);
     }
     //////////////////////////////////////////////////////////////////////////////////////////////////
+
+    /***
+     * Actualiza el mamá del jugador
+     * @param mana entero con el valor que se desea actualizar el maná.
+     */
     public void actMana(int mana){
         this.usableMana-=mana;
+        this.usableMana += eventRegister.getMana();
+        eventRegister.setMana(0);
         setTopElements(this.enemyLifePoints,this.usableMana,this.lifePoint,this.cardsInDeck);
     }
+
+    /***
+     * Actualiza la vida enemiga
+     * @param life vida enemiga
+     */
     public void actEnemyLife(int life){
         System.out.println(life+"   " +enemyLifePoints);
         this.enemyLifePoints-=life;
         System.out.println(life+"   " +enemyLifePoints);
         setTopElements(this.enemyLifePoints,this.usableMana,this.lifePoint,this.cardsInDeck);
     }
+
+    /***
+     * Actualiza la vida del jugador
+     * @param life vida del jugador
+     */
     public void actMyLife(int life){
+        this.lifePoint += eventRegister.getHealLife();
         this.lifePoint-=life;
+        eventRegister.setHealLife();
         setTopElements(this.enemyLifePoints,this.usableMana,this.lifePoint,this.cardsInDeck);
     }
+
+    /***
+     * Actualiza la cantidad de cartas en el deck
+     */
     public void actCardInDeck(){
         this.cardsInDeck--;
         setTopElements(this.enemyLifePoints,this.usableMana,this.lifePoint,this.cardsInDeck);
     }
 
+    /***
+     * Actualiza el mamá total a cada inicio de partida, aumentándolo un 25% en cada partida.
+     */
+    public void actTotalMana(){
+        this.usableMana = this.totalMana;
+        if (totalMana < 1500){
+            this.usableMana+= this.totalMana*0.25f;}
+        this.totalMana = this.usableMana;
+        actMana(0);
+    }
+///////////////////////////////////////////////////////////////////////////////////////
+
+    /***
+     * Ejecuta una carta
+     * @param card Objeto tipo carta que se desea ejecutar
+     * @return  Un entero en caso de que sea un esbirro.
+     */
     private int executeCard(TypeCarta card){
         System.out.println(card.getType());
         if (card.getType().equals("Esbirro")){
             Esbirros esbirroEvent = new Esbirros(card);
             System.out.println(esbirroEvent.DmgEsbirro());
             System.out.println(this.eventRegister.getDamage());
-            this.eventRegister.addDamage(esbirroEvent.DmgEsbirro());
             System.out.println(this.eventRegister.getDamage());
             actEnemyLife(card.getDmg_fct());
             return esbirroEvent.DmgEsbirro();
         }
         if (card.getType().equals("Hechizo")) {
-            System.out.println("Es un hechizo xdxdxd");
+            Hechizos hechizoEvent = new Hechizos(card,lifePoint,enemyLifePoints,cardsInDeck,usableMana,myDeck,eventRegister,myDeckGen);
+            hechizoEvent.ejecCard();
+            actMana(0);
+            actMyLife(0);
+            actEnemyLife(0);
             return 0;
         }
         if (card.getType().equals("Secreto")){
-            System.out.println("Shh secreto :v");
+            Secretos secretoEvent = new Secretos(card,lifePoint,enemyLifePoints,cardsInDeck,myDeck,
+                    eventRegister,myDeckGen);
+            secretoEvent.ejetCard();
+            actMana(0);
+            actMyLife(0);
+            actEnemyLife(0);
             return 0;
         }
         return 0;
     }
 
+    /***
+     * Busca un slot disponible en el tablero para agregar una carta nueva
+     * @param card carda a añadir tipo TypeCard
+     */
     private void addCartToSlot(TypeCarta card){
         if(cardsInDeck > 0){
             boolean isInHand = false;
@@ -249,6 +349,10 @@ public class GameBoard extends BorderPane {
         }}
     }
 
+    /***
+     * Slot 1 para cartas
+     * @param card objeto tipo carta
+     */
     private void card1Slot(TypeCarta card){
         this.isUsableCardSlot1 = false;
         CardHand cardHand1 = new CardHand(card,150);
@@ -270,7 +374,10 @@ public class GameBoard extends BorderPane {
         this.myDeck.pop();
 
     }
-
+    /***
+     * Slot 2 para cartas
+     * @param card objeto tipo carta
+     */
     private void card2Slot(TypeCarta card){
         this.isUsableCardSlot2 = false;
         CardHand cardHand2 = new CardHand(card,150);
@@ -291,7 +398,10 @@ public class GameBoard extends BorderPane {
         cardSlot2Pane.getChildren().add(cardHand2.getCardImg());
         this.myDeck.pop();
     }
-
+    /***
+     * Slot 3 para cartas
+     * @param card objeto tipo carta
+     */
     private void card3Slot(TypeCarta card){
         this.isUsableCardSlot3 = false;
         CardHand cardHand3 = new CardHand(card,150);
@@ -311,8 +421,11 @@ public class GameBoard extends BorderPane {
         });
         cardSlot3Pane.getChildren().add(cardHand3.getCardImg());
         this.myDeck.pop();
-
     }
+    /***
+     * Slot 4 para cartas
+     * @param card objeto tipo carta
+     */
 
     private void card4Slot(TypeCarta card){
         this.isUsableCardSlot4 = false;
@@ -335,6 +448,10 @@ public class GameBoard extends BorderPane {
         this.myDeck.pop();
 
     }
+    /***
+     * Slot 5 para cartas
+     * @param card objeto tipo carta
+     */
 
     private void card5Slot(TypeCarta card){
         this.isUsableCardSlot5 = false;
@@ -358,5 +475,41 @@ public class GameBoard extends BorderPane {
 
     }
 
+    /***
+     * Thread que está contantemente revisando si hay información entrante por los sockets
+     */
+    public void checkInData(){
+        Thread actDataThread = new Thread(()->  {
+            while(true){
+                if (ServerController.getFlag()){
+                    String inData = ServerController.getNewData();
+                    ServerController.setFlagFalse();
+                    this.inEventRegister = gson.fromJson(inData,EventRegister.class);
+                    System.out.println("daño: "+inEventRegister.getDamage());
+                }
+                else{
+                    try {
+                        Thread.sleep(10);
+                    } catch (InterruptedException e) {
+                    }}
+                }
+
+        });
+        actDataThread.start();
+
+    }
+
+    /***
+     * Actualiza los datos del juego cuando hay información entrante nueva
+     */
+    public void actGameBoard(){
+        try {
+            actMyLife(this.inEventRegister.getDamage());
+            actTotalMana();
+        }catch (Exception e){}
+
+    }
 
 }
+
+

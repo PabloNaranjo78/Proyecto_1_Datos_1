@@ -2,6 +2,7 @@ package cr.ac.tec.MonsTEC.MainWindow;
 
 import cr.ac.tec.MonsTEC.Game.GameBoard;
 import cr.ac.tec.MonsTEC.ServerSockets.Server;
+import cr.ac.tec.MonsTEC.ServerSockets.ServerController;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
@@ -19,7 +20,8 @@ public class CreateGame extends Pane {
 
     final public int port = (int) ((Math.random() * ((60000 - 5000) + 1)) + 5000);
     Stage stage;
-
+    ServerController serverController;
+    String ip = "127.0.0.1";
     /**
      *Se definen valores de la interfaz, y la interfaz en si, junto con las acciones de los respectivos botones,
      *los cuales son el de atras y el de iniciar el juego
@@ -43,6 +45,8 @@ public class CreateGame extends Pane {
         lblIp.setLayoutX(275);
         lblIp.setLayoutY(380);
 
+        startServer(port,ip);
+
         btnBack.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
@@ -63,18 +67,20 @@ public class CreateGame extends Pane {
         });
 
 
-        startServer(port,lblIp.getText());
+        this.serverController = new ServerController(false,port,ip);
         getChildren().addAll(btnBack,lblPort,lblIp,btnStartGame);
         };
 
 
-
-
+    /***
+     * Inicia el servidor
+     * @param port número de puerto
+     * @param ip número de ip
+     */
     private void startServer(int port, String ip) {
         Server server = new Server(port);
         Thread serverThread = new Thread(server);
         serverThread.start();
-
 
     }
 
@@ -87,7 +93,7 @@ public class CreateGame extends Pane {
      *Hace que se pasa hacia la siguiente ventana
      */
     public void nexWindow(){
-        BorderPane gameBoard = new GameBoard(stage);
+        BorderPane gameBoard = new GameBoard(stage,this.serverController);
         Scene scene = new Scene(gameBoard,1000,600);
         stage.setScene(scene);
 

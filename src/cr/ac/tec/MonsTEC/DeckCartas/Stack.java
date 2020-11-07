@@ -56,10 +56,16 @@ public class Stack {
         return this.node.getThisCard();
     }
 
+    /***
+     * Suma una carta al contador
+     */
     private void addCard(){
         this.cardCounter++;
     }
 
+    /***
+     * Resta una carta al contador
+     */
     private void restCard(){
         this.cardCounter--;
     }

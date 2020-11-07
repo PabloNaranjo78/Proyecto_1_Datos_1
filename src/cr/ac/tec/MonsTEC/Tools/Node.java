@@ -8,6 +8,7 @@ import cr.ac.tec.MonsTEC.DeckCartas.CardTypes.TypeCarta;
 public class Node {
     private TypeCarta thisCard;
     private Node prevCard;
+    private TypeCarta nextCard;
 
 
     /**
@@ -17,6 +18,8 @@ public class Node {
     public Node (TypeCarta element){
         this.thisCard = element;
         this.prevCard = null;
+        this.nextCard = null;
+
     }
 
     /**
@@ -41,6 +44,10 @@ public class Node {
      */
     public void setPrevCard(Node prevCard) {
         this.prevCard = prevCard;
+    }
+
+    public TypeCarta getNextCard(){
+        return this.nextCard;
     }
 
 }

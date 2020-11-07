@@ -23,6 +23,10 @@ public class Main extends Application {
 
     }
 
+    /***
+     * Retorna la escena
+     * @return Retorna la escena
+     */
     public static Scene getScene(){
         return scene;
     }

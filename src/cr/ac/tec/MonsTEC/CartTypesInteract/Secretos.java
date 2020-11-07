@@ -1,6 +1,9 @@
 package cr.ac.tec.MonsTEC.CartTypesInteract;
 
+import cr.ac.tec.MonsTEC.DeckCartas.CardTypes.TypeCarta;
 import cr.ac.tec.MonsTEC.DeckCartas.Deckplayer;
+import cr.ac.tec.MonsTEC.DeckCartas.Stack;
+import cr.ac.tec.MonsTEC.Tools.EventRegister;
 
 /**
  * Se ejecutara los efectos que tengan las cartas tipo secretos al ser utilizados en el juego
@@ -9,25 +12,32 @@ public class Secretos {
     String name;
     int vidaJugador, vidaEnemigo, cantidadCartas, i;
     Deckplayer deckplayer1, deckenemy;
+    EventRegister eventRegister;
+    Deckplayer deckplayer;
+    Stack myDeck;
 
     /**
      * Constructores de los objetos que se recibirian, junto a la ejecucion de las acciones de que provocaria el
      * secreto en la partida
-     * @param name nombre de la carta que se usa en el juego
+     * @param card la carta que se usa en el juego
      * @param vidaJugador vida actual que tiene el jugador
      * @param vidaEnemigo vida actual que tiene el oponente
      * @param cantidadCartas cantidad de cartas del deck del jugador
-     * @param deckplayer1 deck del jugador
-     * @param deckenemy deck del oponente
+     * @param eventRegister registro de eventos
+     * @param deckplayer deck de cartas.
      */
-    public Secretos(String name, int vidaJugador, int vidaEnemigo, int cantidadCartas, Deckplayer deckplayer1, Deckplayer deckenemy) {
-        this.name = name;
+    public Secretos(TypeCarta card, int vidaJugador, int vidaEnemigo,
+                    int cantidadCartas, Stack myDeck, EventRegister eventRegister, Deckplayer deckplayer) {
+        this.name = card.getName();
         this.vidaJugador = vidaJugador;
         this.vidaEnemigo = vidaEnemigo;
         this.cantidadCartas = cantidadCartas;
-        this.deckplayer1 = deckplayer1;
-        this.deckenemy = deckenemy;
+        this.eventRegister = eventRegister;
+        this. deckplayer = deckplayer;
+        this.myDeck = myDeck;
+    }
 
+    public void ejetCard(){
         if (name == "Invocacion gemela"){
             Invocaciongemela();}
         if (name == "Golpe de suerte"){
@@ -54,10 +64,10 @@ public class Secretos {
             CampanaDivision();}
         if (name ==  "Escalera al cielo"){
             EscaleraCielo();}
-        }
 
+    }
 
-
+/*Funciones de cartas Secreto*/
     private void Invocaciongemela() {
         /*invoca carta igual que la de la ronda anterior*/
 
@@ -65,14 +75,14 @@ public class Secretos {
 
     private void GolpeSuerte() {
         if (cantidadCartas<10){
-            deckplayer1.pushXCards(deckplayer1.getDeck(),2);
+            deckplayer.pushXCards(myDeck,2);
         }
     }
 
     private void DanzaMal() {
         if (vidaEnemigo<200) {
             for (i = 0; i < 2; i++) {
-                deckenemy.getDeck().pop();
+                //Elimina dos cartas al enemigo
             }
         }
 
@@ -80,11 +90,11 @@ public class Secretos {
 
     private void DestruccionImprevisible() {
         if (vidaJugador < 300) {
-        vidaEnemigo= vidaEnemigo -75;
+            eventRegister.addDamage(75);
         }
         else {
             for (i = 0; i < 2; i++) {
-                deckenemy.getDeck().pop();
+                //Elimina dos caras enemigas
             }
         }
     }
@@ -98,9 +108,9 @@ public class Secretos {
     private void Triqueta() {
 
         if (vidaJugador < 50) {
-            deckplayer1.pushXCards(deckplayer1.getDeck(),2);
-            vidaJugador = vidaJugador +300;
-            vidaEnemigo = vidaEnemigo - 30;
+            deckplayer.pushXCards(myDeck,3);
+            eventRegister.heal(300);
+            eventRegister.addDamage(30);
         }
     }
 
@@ -113,27 +123,25 @@ public class Secretos {
     private void RuletaRusa() {
         int randomNum = (int) (Math.random() * 10);
         if (randomNum < 5) {
-            vidaJugador = vidaJugador - 40;
+            eventRegister.heal(-40);
         }
         else {
-            vidaEnemigo = vidaEnemigo - 40;
+            eventRegister.addDamage(40);
         }
     }
 
     private void Sacrificio() {
 
         if (vidaJugador < 50) {
-            for (i = 0; i < 2; i++) {
-                deckenemy.getDeck().pop();
-            }
-            vidaJugador = vidaJugador + 200;
+                deckplayer.popXCard(myDeck,2);
+                eventRegister.heal(200);
         }
     }
 
     private void PuñalBolsillo() {
 
         if (vidaEnemigo < 200) {
-            vidaEnemigo=vidaEnemigo-80;
+            eventRegister.addDamage(80);
         }
 
     }
@@ -141,9 +149,9 @@ public class Secretos {
     private void MartilloPlataMaxwell() {
 
         if (deckplayer1.getDeck().getCardCounter() < 5 && vidaJugador < 300) {
-            vidaEnemigo= vidaEnemigo - 50;
+            eventRegister.addDamage(50);
             for (i = 0; i < 2; i++) {
-                deckenemy.getDeck().pop();
+                //Elimina 2 cartas
             }
         }
     }
@@ -151,20 +159,20 @@ public class Secretos {
     private void CampanaDivision() {
 
         if (vidaEnemigo < 100) {
-            vidaEnemigo = 10;
+            while ((vidaEnemigo - eventRegister.getDamage())<10){
+                eventRegister.addDamage(1);
+            }
         }
-
     }
 
     private void EscaleraCielo() {
 
         if (vidaEnemigo < 150 && vidaJugador < 150) {
-            vidaEnemigo = 5;
+            while ((vidaEnemigo - eventRegister.getDamage())<5){
+                eventRegister.addDamage(1);
         }
 
     }
 
 
-
-
-}
+}}
